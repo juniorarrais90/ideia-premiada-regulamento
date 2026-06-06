@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação — Programa Ideia Premiada | Arrais Advogados</title>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<style>
+  :root{
+    --navy:#1F3864; --navy2:#2c4a82; --gold:#C8A24B; --ink:#1d2330;
+    --muted:#5b6473; --bg:#f4f6fa; --card:#ffffff; --line:#e2e7f0;
+    --green:#1f7a4d; --greenbg:#e7f4ec; --red:#b23a3a; --redbg:#fbecec;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  nav{position:sticky;top:0;z-index:50;background:rgba(31,56,100,.97);backdrop-filter:blur(6px);color:#fff}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  nav .brand{font-weight:bold;letter-spacing:.5px;font-size:15px}
+  nav .brand span{color:var(--gold)}
+  nav .links{display:flex;gap:18px;font-size:13.5px}
+  nav .links a{opacity:.85;transition:.2s}
+  nav .links a:hover{opacity:1;color:var(--gold)}
+  nav .menu-btn{display:none;background:none;border:0;color:#fff;font-size:22px;cursor:pointer}
+  @media(max-width:820px){ nav .links{display:none} nav .menu-btn{display:block} nav .links.open{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--navy);padding:14px 22px;gap:14px} }
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#15233f 100%);color:#fff;padding:64px 0 72px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(200,162,75,.25),transparent 70%)}
+  .hero .tag{display:inline-block;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,162,75,.5);padding:5px 12px;border-radius:30px;margin-bottom:20px}
+  .hero h1{font-size:42px;line-height:1.15;margin-bottom:14px}
+  .hero h1 b{color:var(--gold)}
+  .hero p.lead{font-size:18px;max-width:640px;opacity:.92}
+  .hero .firma{margin-top:28px;font-size:14px;opacity:.8}
+  .hero .cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--gold);color:#22324f;font-weight:bold;padding:13px 24px;border-radius:8px;border:0;cursor:pointer;font-size:15px;transition:.2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+  .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:-38px;position:relative;z-index:5}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center;box-shadow:0 6px 18px rgba(20,35,63,.06)}
+  .stat .n{font-size:30px;font-weight:bold;color:var(--navy)}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:4px}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+  section{padding:54px 0}
+  .eyebrow{color:var(--gold);font-weight:bold;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+  h2.sec{font-size:28px;color:var(--navy);margin-bottom:10px}
+  .sub{color:var(--muted);max-width:680px;margin-bottom:30px}
+  p{margin-bottom:14px;text-align:justify}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .cat{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--navy);border-radius:12px;padding:26px 22px;transition:.2s}
+  .cat:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(20,35,63,.1)}
+  .cat .ic{width:52px;height:52px;border-radius:12px;background:#eef2fa;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .cat h3{color:var(--navy);font-size:18px;margin-bottom:8px}
+  .cat .badge{display:inline-block;font-size:12px;font-weight:bold;color:#fff;background:var(--navy);padding:3px 10px;border-radius:20px;margin-bottom:10px}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  @media(max-width:820px){.steps{grid-template-columns:1fr;gap:10px}}
+  .step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 18px}
+  .step .num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-bottom:12px}
+  .step h4{font-size:15px;color:var(--navy);margin-bottom:6px}
+  .step p{font-size:13.5px;color:var(--muted);text-align:left;margin:0}
+  .tbl{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(20,35,63,.05)}
+  .tbl th,.tbl td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:14.5px}
+  .tbl thead th{background:var(--navy);color:#fff;font-size:13.5px;text-transform:uppercase;letter-spacing:.5px}
+  .tbl td.c,.tbl th.c{text-align:center}
+  .tbl tbody tr:last-child td{border-bottom:0}
+  .tbl tbody tr:hover{background:#f7f9fd}
+  .crit-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center}
+  @media(max-width:820px){.crit-grid{grid-template-columns:1fr}}
+  .donut-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px;text-align:center}
+  .legend{display:flex;flex-direction:column;gap:8px;margin-top:16px;font-size:13.5px}
+  .legend .row{display:flex;align-items:center;gap:8px;justify-content:center}
+  .dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+  @media(max-width:760px){.tiers{grid-template-columns:1fr}}
+  .tier{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 22px;text-align:center;position:relative}
+  .tier.hl{border:2px solid var(--gold);transform:scale(1.04);box-shadow:0 16px 38px rgba(200,162,75,.28)}
+  .tier .ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#22324f;font-size:11px;font-weight:bold;padding:4px 12px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+  .tier .lvl{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:bold}
+  .tier .val{font-size:26px;font-weight:bold;color:var(--navy);margin:10px 0}
+  .tier.hl .val{font-size:30px}
+  .tier .ex{font-size:13.5px;color:var(--muted)}
+  .tier .breakdown{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;text-align:left}
+  .tier .breakdown .b{display:flex;justify-content:space-between;font-size:13px;margin:5px 0}
+  .tier .breakdown .b b{color:var(--navy)}
+  .note{background:#eef2fa;border-left:4px solid var(--navy);border-radius:8px;padding:16px 18px;font-size:13.5px;color:#39455a;margin-top:22px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:13px;font-weight:bold;color:var(--navy);margin-bottom:5px}
+  .field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:14px;color:var(--ink);background:#fff}
+  .field textarea{min-height:120px;resize:vertical}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.row2{grid-template-columns:1fr}}
+  footer{background:#15233f;color:#cdd5e4;padding:38px 0;font-size:13.5px;text-align:center}
+  footer b{color:#fff}
+  footer a{color:#aab6cc;text-decoration:underline}
+  footer .leis{margin-top:10px;font-size:12px;opacity:.7}
+  .gate{position:fixed;inset:0;background:linear-gradient(135deg,#15233f,#1F3864);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
+  .gate-card{background:#fff;border-radius:16px;padding:34px;max-width:380px;width:100%;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  .gate-card .lock{font-size:34px}
+  .gate-card h2{color:var(--navy);font-size:20px;margin:10px 0 4px}
+  .gate-card p{color:var(--muted);font-size:13.5px;text-align:center;margin-bottom:18px}
+  .gate-card input{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:15px;text-align:center;margin-bottom:12px}
+  .gate-card button{width:100%;background:var(--navy);color:#fff;border:0;padding:13px;border-radius:8px;font-weight:bold;font-size:15px;cursor:pointer}
+  .gate-err{display:none;color:var(--red);font-size:13px;margin-bottom:10px}
+  #app{display:none}
+  .calc{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start;margin-top:6px}
+  @media(max-width:880px){.calc{grid-template-columns:1fr}}
+  .calc-left{display:flex;flex-direction:column;gap:20px}
+  .calc-card{background:#fff;color:var(--ink);border-radius:16px;padding:28px;border:1px solid var(--line);box-shadow:0 6px 22px rgba(20,35,63,.06)}
+  .calc-card h3.ct{color:var(--navy);font-size:17px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .crit-item{margin-bottom:20px}
+  .crit-item .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:10px}
+  .crit-item .name{font-weight:bold;font-size:15px}
+  .crit-item .name small{color:var(--muted);font-weight:normal;display:block;font-size:12.5px}
+  .crit-item .peso{font-size:12px;background:#eef2fa;color:var(--navy);padding:2px 9px;border-radius:20px;font-weight:bold}
+  .crit-item .scoreval{font-weight:bold;color:var(--navy);font-size:18px;min-width:18px;text-align:center;display:inline-block}
+  input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:7px;border-radius:6px;background:#dce3f0;outline:none;margin-top:6px}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.3)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid #fff}
+  .scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:3px}
+  .result{background:#fff;color:var(--ink);border-radius:16px;padding:28px;border:1px solid var(--line);box-shadow:0 6px 22px rgba(20,35,63,.06);position:sticky;top:80px}
+  .gauge{text-align:center;margin-bottom:18px}
+  .pct{font-size:48px;font-weight:bold;color:var(--navy);line-height:1}
+  .pct small{font-size:18px;color:var(--muted)}
+  .bar{height:12px;background:#e7ecf5;border-radius:8px;overflow:hidden;margin:14px 0 6px}
+  .bar > i{display:block;height:100%;width:0;border-radius:8px;background:var(--navy);transition:width .35s ease}
+  .thresh{font-size:12px;color:var(--muted);text-align:right}
+  .status{padding:14px;border-radius:10px;text-align:center;font-weight:bold;font-size:16px;margin:16px 0}
+  .status.ok{background:var(--greenbg);color:var(--green)}
+  .status.no{background:var(--redbg);color:var(--red)}
+  .resrow{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .resrow:last-child{border-bottom:0}
+  .resrow b{color:var(--navy)}
+  .btn-pdf{width:100%;margin-top:18px;background:var(--gold);color:#22324f;border:0;padding:14px;border-radius:10px;font-weight:bold;font-size:15px;cursor:pointer}
+  .btn-pdf:hover{filter:brightness(.96)}
+  .disc{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5}
+  .pagehead{padding:30px 0 0}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="lock">🔒</div>
+    <h2>Área do Comitê</h2>
+    <p>Acesso restrito à avaliação de ideias. Informe a senha.</p>
+    <div class="gate-err" id="gateErr">Senha incorreta. Tente novamente.</div>
+    <input type="password" id="senha" placeholder="Senha" onkeydown="if(event.key==='Enter')entrar()">
+    <button onclick="entrar()">Entrar</button>
+  </div>
+</div>
+
+<div id="app">
+<nav>
+  <div class="wrap">
+    <div class="brand">ARRAIS <span>ADVOGADOS</span></div>
+    <div class="links"><a href="index.html">← Voltar ao site</a> <a href="#" onclick="sair();return false;">Sair</a></div>
+  </div>
+</nav>
+
+<div class="wrap pagehead">
+  <div class="eyebrow" style="color:var(--gold)">Calculadora oficial</div>
+  <h2 class="sec">Avaliação de ideia — Comitê</h2>
+  <p class="sub">Preencha os dados da ideia (copie do aviso recebido), dê as notas de 1 a 5 em cada critério e gere o PDF da avaliação.</p>
+</div>
+
+<div class="wrap" style="padding-bottom:54px">
+  <div class="calc">
+    <div class="calc-left">
+      <div class="calc-card">
+        <h3 class="ct">Dados da ideia</h3>
+        <div class="field"><label for="f-autor">Autor(es) da ideia</label><input type="text" id="f-autor" placeholder="Nome de quem teve a ideia (ou do grupo)"></div>
+        <div class="row2">
+          <div class="field"><label for="f-cat">Categoria</label>
+            <select id="f-cat"><option value="">Selecione...</option><option value="A — Solução de problema">A — Solução de problema</option><option value="B — Aperfeiçoamento de processo">B — Aperfeiçoamento de processo</option><option value="C — Inovação e crescimento">C — Inovação e crescimento</option></select>
+          </div>
+          <div class="field"><label for="f-data">Data da avaliação</label><input type="date" id="f-data"></div>
+        </div>
+        <div class="field"><label for="f-titulo">Título da ideia</label><input type="text" id="f-titulo" placeholder="Resumo em uma linha"></div>
+        <div class="field"><label for="f-desc">Descrição da ideia</label><textarea id="f-desc" placeholder="O problema/oportunidade, a solução proposta e o benefício esperado"></textarea></div>
+        <div class="field" style="margin-bottom:0"><label for="f-avaliador">Avaliador (Comitê)</label><input type="text" id="f-avaliador" placeholder="Nome de quem está avaliando"></div>
+      </div>
+
+      <div class="calc-card">
+        <h3 class="ct">Notas (1 a 5)</h3>
+        <div class="crit-item">
+          <div class="top"><div class="name">Aplicabilidade <small>Dá para implementar com a estrutura atual?</small></div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-aplic">3</span></div></div>
+          <input type="range" min="1" max="5" value="3" id="aplic" oninput="calc()">
+          <div class="scale"><span>1 Muito baixa</span><span>3</span><span>5 Muito alta</span></div>
+        </div>
+        <div class="crit-item">
+          <div class="top"><div class="name">Impacto <small>Tamanho do benefício gerado</small></div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-impacto">3</span></div></div>
+          <input type="range" min="1" max="5" value="3" id="impacto" oninput="calc()">
+          <div class="scale"><span>1 Muito baixo</span><span>3</span><span>5 Muito alto</span></div>
+        </div>
+        <div class="crit-item">
+          <div class="top"><div class="name">Custo-benefício <small>Retorno em relação ao investimento</small></div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-custo">3</span></div></div>
+          <input type="range" min="1" max="5" value="3" id="custo" oninput="calc()">
+          <div class="scale"><span>1 Ruim</span><span>3</span><span>5 Ótimo</span></div>
+        </div>
+        <div class="crit-item" style="margin-bottom:0">
+          <div class="top"><div class="name">Originalidade <small>Grau de novidade da proposta</small></div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-orig">3</span></div></div>
+          <input type="range" min="1" max="5" value="3" id="orig" oninput="calc()">
+          <div class="scale"><span>1 Comum</span><span>3</span><span>5 Inovadora</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="gauge">
+        <div class="pct"><span id="pct">60</span><small>%</small></div>
+        <div style="font-size:13px;color:var(--muted)">Pontuação: <b id="pts">30</b> de 50</div>
+        <div class="bar"><i id="barfill"></i></div>
+        <div class="thresh">aprova com 70%</div>
+      </div>
+      <div class="status no" id="status">Reprovada</div>
+      <div class="resrow"><span>Nível de impacto</span><b id="nivel">—</b></div>
+      <div class="resrow"><span>Prêmio de referência</span><b id="valor">—</b></div>
+      <button class="btn-pdf" onclick="gerarPDF()">⬇ Gerar PDF da avaliação</button>
+      <p class="disc">Sugestão orientativa baseada nas notas. O enquadramento do nível de impacto e a fixação do valor competem ao Comitê de Avaliação (Art. 8º, § 1º), e a aprovação depende também de autorização da gestão.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  var SENHA = "ideiarrais";
+  function entrar(){
+    var p = document.getElementById('senha').value;
+    if(p === SENHA){ sessionStorage.setItem('comite_ok','1'); abrir(); }
+    else { document.getElementById('gateErr').style.display='block'; }
+  }
+  function abrir(){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('app').style.display='block';
+    initDate(); calc();
+  }
+  function sair(){ sessionStorage.removeItem('comite_ok'); location.reload(); }
+  function initDate(){
+    var d=new Date();
+    var iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    var df=document.getElementById('f-data'); if(df && !df.value) df.value=iso;
+  }
+  if(sessionStorage.getItem('comite_ok')==='1'){ abrir(); }
+
+  function v(id){ return document.getElementById(id).value; }
+  function compute(){
+    var a=+v('aplic'), i=+v('impacto'), c=+v('custo'), o=+v('orig');
+    var pts=a*3+i*3+c*2+o*2;
+    var pct=Math.round(pts/50*100);
+    var ok=pct>=70;
+    var nivel='—', valor='—';
+    if(ok){
+      if(i<=2){nivel='Leve';valor='R$ 150,00';}
+      else if(i===3){nivel='Médio';valor='R$ 300,00';}
+      else { nivel='Alto'; valor = pts<=41 ? 'R$ 500,00' : (pts<=46 ? 'R$ 750,00' : 'R$ 1.000,00'); }
+    }
+    return {a:a,i:i,c:c,o:o,pts:pts,pct:pct,ok:ok,nivel:nivel,valor:valor};
+  }
+  function calc(){
+    var r=compute();
+    document.getElementById('v-aplic').textContent=r.a;
+    document.getElementById('v-impacto').textContent=r.i;
+    document.getElementById('v-custo').textContent=r.c;
+    document.getElementById('v-orig').textContent=r.o;
+    document.getElementById('pts').textContent=r.pts;
+    document.getElementById('pct').textContent=r.pct;
+    var fill=document.getElementById('barfill');
+    fill.style.width=r.pct+'%';
+    fill.style.background=r.ok?'#1f7a4d':(r.pct>=55?'#C8A24B':'#b23a3a');
+    var st=document.getElementById('status');
+    if(r.ok){st.className='status ok';st.textContent='✓ Aprovada (atinge os 70%)';}
+    else{st.className='status no';st.textContent='✗ Reprovada (abaixo de 70%)';}
+    document.getElementById('nivel').textContent=r.nivel;
+    document.getElementById('valor').textContent=r.valor;
+  }
+  function dataBR(iso){ if(!iso) return new Date().toLocaleDateString('pt-BR'); var p=iso.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; }
+
+  function gerarPDF(){
+    if(!window.jspdf || !window.jspdf.jsPDF){ alert('Não foi possível carregar o gerador de PDF. Verifique a conexão e tente novamente.'); return; }
+    var r=compute();
+    var autor=v('f-autor').trim()||'(não informado)';
+    var cat=v('f-cat')||'(não informada)';
+    var titulo=v('f-titulo').trim()||'(não informado)';
+    var desc=v('f-desc').trim()||'(não informada)';
+    var avaliador=v('f-avaliador').trim()||'(não informado)';
+    var data=dataBR(v('f-data'));
+    var jsPDF=window.jspdf.jsPDF;
+    var doc=new jsPDF({unit:'pt',format:'a4'});
+    var W=doc.internal.pageSize.getWidth(); var M=50; var maxW=W-M*2;
+    doc.setFillColor(31,56,100); doc.rect(0,0,W,76,'F');
+    doc.setTextColor(255,255,255);
+    doc.setFont('helvetica','bold'); doc.setFontSize(17); doc.text('ARRAIS ADVOGADOS', M, 33);
+    doc.setFont('helvetica','normal'); doc.setFontSize(11.5); doc.text('Ficha de Avaliação — Programa Ideia Premiada', M, 54);
+    var y=104; doc.setTextColor(30,35,48);
+    function secTitle(t){ doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(31,56,100); doc.text(t,M,y); y+=6; doc.setDrawColor(210,216,228); doc.line(M,y,W-M,y); y+=16; doc.setTextColor(30,35,48); }
+    function field(l,val){ doc.setFont('helvetica','bold'); doc.setFontSize(10.5); doc.text(l,M,y); doc.setFont('helvetica','normal'); doc.setFontSize(11); var ls=doc.splitTextToSize(val,maxW); y+=15; doc.text(ls,M,y); y+=ls.length*14+8; }
+    secTitle('IDENTIFICAÇÃO DA IDEIA');
+    field('Autor(es):',autor); field('Categoria:',cat); field('Título:',titulo); field('Descrição:',desc);
+    y+=4; secTitle('AVALIAÇÃO');
+    var rows=[['Aplicabilidade',r.a,3,r.a*3],['Impacto',r.i,3,r.i*3],['Custo-benefício',r.c,2,r.c*2],['Originalidade',r.o,2,r.o*2]];
+    var c1=M,c2=M+230,c3=M+320,c4=M+410;
+    doc.setFont('helvetica','bold'); doc.setFontSize(10.5); doc.setFillColor(31,56,100); doc.setTextColor(255,255,255); doc.rect(M,y-11,maxW,20,'F');
+    doc.text('Critério',c1+6,y+3); doc.text('Nota',c2,y+3); doc.text('Peso',c3,y+3); doc.text('Subtotal',c4,y+3); y+=20;
+    doc.setTextColor(30,35,48); doc.setFont('helvetica','normal');
+    for(var k=0;k<rows.length;k++){ doc.text(String(rows[k][0]),c1+6,y+3); doc.text(String(rows[k][1]),c2+4,y+3); doc.text(String(rows[k][2]),c3+4,y+3); doc.text(String(rows[k][3]),c4+4,y+3); doc.setDrawColor(225,229,238); doc.line(M,y+8,W-M,y+8); y+=20; }
+    doc.setFont('helvetica','bold'); doc.text('Pontuação total',c1+6,y+3); doc.text(r.pts+' / 50  ('+r.pct+'%)',c4-60,y+3); y+=26;
+    var ok=r.ok;
+    doc.setFillColor(ok?231:251, ok?244:236, ok?236:236); doc.roundedRect(M,y-12,maxW,30,4,4,'F');
+    doc.setTextColor(ok?31:178, ok?122:58, ok?77:58); doc.setFont('helvetica','bold'); doc.setFontSize(12.5);
+    doc.text((ok?'APROVADA':'REPROVADA')+(ok?'  -  atinge os 70%':'  -  abaixo de 70%'),M+12,y+7); y+=40;
+    doc.setTextColor(30,35,48); doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.text('Nível de impacto: ',M,y); doc.setFont('helvetica','normal'); doc.text(r.nivel,M+110,y); y+=18;
+    doc.setFont('helvetica','bold'); doc.text('Prêmio de referência: ',M,y); doc.setFont('helvetica','normal'); doc.text(r.valor,M+130,y); y+=28;
+    secTitle('RESPONSÁVEL PELA AVALIAÇÃO');
+    field('Avaliador (Comitê):',avaliador); field('Data:',data);
+    y+=28; doc.setDrawColor(120,120,120); doc.line(M,y,M+260,y); y+=14;
+    doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.text('Avaliador / Comitê de Avaliação',M,y);
+    var yy=doc.internal.pageSize.getHeight()-54; doc.setDrawColor(225,229,238); doc.line(M,yy,W-M,yy);
+    doc.setFontSize(8.5); doc.setTextColor(110,118,130);
+    var disc=doc.splitTextToSize('Prêmio = liberalidade do empregador por desempenho superior (art. 457, §§ 2º e 4º, CLT). O enquadramento do nível e o valor competem ao Comitê de Avaliação (Art. 8º, § 1º); a faixa por pontuação é referência orientativa.',maxW);
+    doc.text(disc,M,yy+14);
+    var nome=(v('f-titulo').trim()||autor).replace(/[^a-zA-Z0-9]+/g,'_').slice(0,40)||'avaliacao';
+    doc.save('Ficha_Avaliacao_'+nome+'.pdf');
+  }
+</script>
+</body>
+</html>
