@@ -3,177 +3,389 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Regulamento — Programa Ideia Premiada | Arrais Advogados</title>
+<title>Programa Ideia Premiada | Arrais Advogados</title>
 <style>
-  :root{ --navy:#1F3864; --line:#999; --soft:#EDF1F8; --ink:#1a1a1a; }
-  *{ box-sizing:border-box; }
-  body{
-    margin:0; background:#e9ecf1; color:var(--ink);
-    font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.6;
+  :root{
+    --navy:#1F3864; --navy2:#2c4a82; --gold:#C8A24B; --ink:#1d2330;
+    --muted:#5b6473; --bg:#f4f6fa; --card:#ffffff; --line:#e2e7f0;
+    --green:#1f7a4d; --greenbg:#e7f4ec; --red:#b23a3a; --redbg:#fbecec;
   }
-  .paper{
-    max-width:860px; margin:32px auto; background:#fff; padding:56px 64px;
-    box-shadow:0 2px 14px rgba(0,0,0,.12); border-radius:4px;
-  }
-  header.capa{ text-align:center; border-bottom:3px solid var(--navy); padding-bottom:18px; margin-bottom:8px; }
-  header.capa .firma{ color:var(--navy); font-size:22px; font-weight:bold; letter-spacing:.5px; }
-  header.capa .tipo{ font-size:16px; font-weight:bold; margin-top:4px; }
-  header.capa .programa{ color:var(--navy); font-size:28px; font-weight:bold; margin-top:6px; }
-  header.capa .sub{ font-style:italic; font-size:14px; color:#444; margin-top:8px; }
-  h2{
-    color:var(--navy); font-size:18px; margin:30px 0 12px; padding-bottom:6px;
-    border-bottom:1px solid #d4dae6;
-  }
-  p{ text-align:justify; margin:0 0 12px; }
-  p .art{ font-weight:bold; }
-  ul{ margin:0 0 12px; padding-left:26px; }
-  li{ text-align:justify; margin-bottom:6px; }
-  table{ width:100%; border-collapse:collapse; margin:8px 0 16px; font-size:14px; }
-  th,td{ border:1px solid var(--line); padding:8px 10px; vertical-align:top; }
-  thead th{ background:var(--navy); color:#fff; text-align:center; }
-  td.center,th.center{ text-align:center; }
-  td.lbl{ background:var(--soft); font-weight:bold; width:32%; }
-  .form td.fill{ height:46px; }
-  .assinatura{ text-align:center; margin-top:42px; }
-  .assinatura .line{ margin-top:36px; }
-  .assinatura .nome{ font-weight:bold; margin-top:4px; }
-  .anexo-title{ page-break-before:always; }
-  .nota{ font-style:italic; font-size:14px; color:#444; margin-bottom:14px; }
-  footer{ text-align:center; color:#666; font-size:12px; margin-top:40px; padding-top:14px; border-top:1px solid #ddd; }
-  @media (max-width:640px){ .paper{ padding:28px 20px; margin:0; } }
-  @media print{ body{ background:#fff; } .paper{ box-shadow:none; margin:0; max-width:none; padding:0; } }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(31,56,100,.97);backdrop-filter:blur(6px);color:#fff}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  nav .brand{font-weight:bold;letter-spacing:.5px;font-size:15px}
+  nav .brand span{color:var(--gold)}
+  nav .links{display:flex;gap:18px;font-size:13.5px}
+  nav .links a{opacity:.85;transition:.2s}
+  nav .links a:hover{opacity:1;color:var(--gold)}
+  nav .menu-btn{display:none;background:none;border:0;color:#fff;font-size:22px;cursor:pointer}
+  @media(max-width:820px){ nav .links{display:none} nav .menu-btn{display:block} nav .links.open{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--navy);padding:14px 22px;gap:14px} }
+
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#15233f 100%);color:#fff;padding:64px 0 72px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(200,162,75,.25),transparent 70%)}
+  .hero .tag{display:inline-block;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,162,75,.5);padding:5px 12px;border-radius:30px;margin-bottom:20px}
+  .hero h1{font-size:42px;line-height:1.15;margin-bottom:14px}
+  .hero h1 b{color:var(--gold)}
+  .hero p.lead{font-size:18px;max-width:640px;opacity:.92}
+  .hero .firma{margin-top:28px;font-size:14px;opacity:.8}
+  .hero .cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--gold);color:#22324f;font-weight:bold;padding:13px 24px;border-radius:8px;border:0;cursor:pointer;font-size:15px;transition:.2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+  .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:-38px;position:relative;z-index:5}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center;box-shadow:0 6px 18px rgba(20,35,63,.06)}
+  .stat .n{font-size:30px;font-weight:bold;color:var(--navy)}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:4px}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  section{padding:54px 0}
+  .eyebrow{color:var(--gold);font-weight:bold;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+  h2.sec{font-size:28px;color:var(--navy);margin-bottom:10px}
+  .sub{color:var(--muted);max-width:680px;margin-bottom:30px}
+  p{margin-bottom:14px;text-align:justify}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .cat{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--navy);border-radius:12px;padding:26px 22px;transition:.2s}
+  .cat:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(20,35,63,.1)}
+  .cat .ic{width:52px;height:52px;border-radius:12px;background:#eef2fa;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .cat h3{color:var(--navy);font-size:18px;margin-bottom:8px}
+  .cat .badge{display:inline-block;font-size:12px;font-weight:bold;color:#fff;background:var(--navy);padding:3px 10px;border-radius:20px;margin-bottom:10px}
+
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  @media(max-width:820px){.steps{grid-template-columns:1fr;gap:10px}}
+  .step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 18px}
+  .step .num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-bottom:12px}
+  .step h4{font-size:15px;color:var(--navy);margin-bottom:6px}
+  .step p{font-size:13.5px;color:var(--muted);text-align:left;margin:0}
+
+  .tbl{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(20,35,63,.05)}
+  .tbl th,.tbl td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:14.5px}
+  .tbl thead th{background:var(--navy);color:#fff;font-size:13.5px;text-transform:uppercase;letter-spacing:.5px}
+  .tbl td.c,.tbl th.c{text-align:center}
+  .tbl tbody tr:last-child td{border-bottom:0}
+  .tbl tbody tr:hover{background:#f7f9fd}
+
+  .crit-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center}
+  @media(max-width:820px){.crit-grid{grid-template-columns:1fr}}
+  .donut-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px;text-align:center}
+  .legend{display:flex;flex-direction:column;gap:8px;margin-top:16px;font-size:13.5px}
+  .legend .row{display:flex;align-items:center;gap:8px;justify-content:center}
+  .dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.tiers{grid-template-columns:1fr}}
+  .tier{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 22px;text-align:center;position:relative}
+  .tier.mid{border:2px solid var(--gold);transform:scale(1.03)}
+  .tier .lvl{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:bold}
+  .tier .val{font-size:26px;font-weight:bold;color:var(--navy);margin:10px 0}
+  .tier .ex{font-size:13.5px;color:var(--muted)}
+
+  .note{background:#eef2fa;border-left:4px solid var(--navy);border-radius:8px;padding:16px 18px;font-size:13.5px;color:#39455a;margin-top:22px}
+
+  #avaliar{background:linear-gradient(135deg,#15233f,#1F3864);color:#fff}
+  #avaliar h2.sec{color:#fff}
+  #avaliar .eyebrow{color:var(--gold)}
+  #avaliar .sub{color:rgba(255,255,255,.8)}
+  .calc{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+  @media(max-width:880px){.calc{grid-template-columns:1fr}}
+  .calc-card{background:#fff;color:var(--ink);border-radius:16px;padding:28px;box-shadow:0 16px 40px rgba(0,0,0,.25)}
+  .crit-item{margin-bottom:20px}
+  .crit-item .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:10px}
+  .crit-item .name{font-weight:bold;font-size:15px}
+  .crit-item .name small{color:var(--muted);font-weight:normal;display:block;font-size:12.5px}
+  .crit-item .peso{font-size:12px;background:#eef2fa;color:var(--navy);padding:2px 9px;border-radius:20px;font-weight:bold}
+  .crit-item .scoreval{font-weight:bold;color:var(--navy);font-size:18px;min-width:18px;text-align:center;display:inline-block}
+  input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:7px;border-radius:6px;background:#dce3f0;outline:none;margin-top:6px}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.3)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid #fff}
+  .scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:3px}
+
+  .result{background:#fff;color:var(--ink);border-radius:16px;padding:28px;box-shadow:0 16px 40px rgba(0,0,0,.25);position:sticky;top:80px}
+  .gauge{text-align:center;margin-bottom:18px}
+  .pct{font-size:48px;font-weight:bold;color:var(--navy);line-height:1}
+  .pct small{font-size:18px;color:var(--muted)}
+  .bar{height:12px;background:#e7ecf5;border-radius:8px;overflow:hidden;margin:14px 0 6px}
+  .bar > i{display:block;height:100%;width:0;border-radius:8px;background:var(--navy);transition:width .35s ease}
+  .thresh{font-size:12px;color:var(--muted);text-align:right}
+  .status{padding:14px;border-radius:10px;text-align:center;font-weight:bold;font-size:16px;margin:16px 0}
+  .status.ok{background:var(--greenbg);color:var(--green)}
+  .status.no{background:var(--redbg);color:var(--red)}
+  .resrow{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .resrow:last-child{border-bottom:0}
+  .resrow b{color:var(--navy)}
+  .disc{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5}
+
+  footer{background:#15233f;color:#cdd5e4;padding:38px 0;font-size:13.5px;text-align:center}
+  footer b{color:#fff}
+  footer .leis{margin-top:10px;font-size:12px;opacity:.7}
 </style>
 </head>
 <body>
-<div class="paper">
 
-  <header class="capa">
-    <div class="firma">ARRAIS ADVOGADOS</div>
-    <div class="tipo">REGULAMENTO INTERNO</div>
-    <div class="programa">PROGRAMA IDEIA PREMIADA</div>
-    <div class="sub">Programa de incentivo à sugestão de soluções, aperfeiçoamentos e inovações</div>
-  </header>
-
-  <h2>CAPÍTULO I — DO OBJETIVO</h2>
-  <p><span class="art">Art. 1º.</span> O Programa Ideia Premiada tem por objetivo estimular os empregados do escritório Arrais Advogados a apresentar sugestões que contribuam para a solução de problemas recorrentes, o aperfeiçoamento de rotinas e processos internos e a criação de novidades que promovam o crescimento do escritório e a melhoria do atendimento aos clientes.</p>
-  <p><span class="art">Art. 2º.</span> O Programa constitui ato de gestão interna, de caráter facultativo e discricionário, instituído por liberalidade do empregador, podendo ser alterado, suspenso ou encerrado a qualquer tempo, a exclusivo critério da administração do escritório, sem que disso decorra direito adquirido aos empregados.</p>
-
-  <h2>CAPÍTULO II — DOS PARTICIPANTES</h2>
-  <p><span class="art">Art. 3º.</span> Podem participar do Programa todos os empregados contratados sob o regime da CLT, independentemente do cargo ou função, desde que o contrato de trabalho esteja vigente na data da submissão da ideia e na data da eventual premiação.</p>
-  <p><span class="art">Parágrafo único.</span> Não participam do Programa os sócios e os advogados associados, cuja contribuição para a melhoria do escritório integra a própria natureza da relação societária ou de associação.</p>
-
-  <h2>CAPÍTULO III — DAS CATEGORIAS DE IDEIAS</h2>
-  <p><span class="art">Art. 4º.</span> As ideias submetidas ao Programa serão enquadradas em uma das seguintes categorias:</p>
-  <ul>
-    <li><strong>Categoria A – Solução de problema</strong> — proposta que resolva ou reduza significativamente um problema recorrente do dia a dia do escritório (retrabalho, falhas de comunicação, atrasos, erros em cadastros ou protocolos);</li>
-    <li><strong>Categoria B – Aperfeiçoamento de processo</strong> — proposta que torne uma rotina existente mais rápida, mais barata, mais segura ou com melhor experiência para o cliente;</li>
-    <li><strong>Categoria C – Inovação e crescimento</strong> — proposta nova que amplie a captação de clientes, crie um serviço, produto ou fluxo inexistente, ou fortaleça a presença digital e institucional do escritório.</li>
-  </ul>
-  <p><span class="art">Parágrafo único.</span> Não serão admitidas sugestões que: (i) configurem mera reclamação sem proposta de solução; (ii) tratem de tema já implementado ou em implementação pelo escritório; (iii) violem a legislação, o Código de Ética e Disciplina da OAB ou o Provimento nº 205/2021 do Conselho Federal da OAB; ou (iv) dependam exclusivamente de aumento de despesa sem demonstração de retorno.</p>
-
-  <h2>CAPÍTULO IV — DA SUBMISSÃO DAS IDEIAS</h2>
-  <p><span class="art">Art. 5º.</span> As ideias deverão ser apresentadas por meio do Formulário de Submissão (Anexo I), encaminhado ao gestor responsável até o dia 25 de cada mês, contendo, no mínimo:</p>
-  <ul>
-    <li>descrição clara do problema ou da oportunidade identificada;</li>
-    <li>descrição da solução proposta e de como seria implementada;</li>
-    <li>benefício esperado (economia de tempo, redução de custo, ganho de clientes, redução de erros);</li>
-    <li>recursos necessários para a implementação, se houver.</li>
-  </ul>
-  <p><span class="art">§ 1º.</span> A ideia poderá ser apresentada individualmente ou em grupo de até 3 (três) empregados, hipótese em que eventual prêmio será dividido em partes iguais entre os autores.</p>
-  <p><span class="art">§ 2º.</span> Cada empregado poderá submeter quantas ideias desejar dentro do mesmo ciclo mensal.</p>
-
-  <h2>CAPÍTULO V — DA AVALIAÇÃO</h2>
-  <p><span class="art">Art. 6º.</span> As ideias serão avaliadas mensalmente por Comitê de Avaliação composto pelo sócio-gestor e por 1 (um) advogado associado por ele designado, na primeira semana do mês subsequente ao da submissão.</p>
-  <p><span class="art">Art. 7º.</span> A avaliação observará os seguintes critérios, pontuados de 1 a 5:</p>
-  <table>
-    <thead><tr><th>Critério</th><th>O que mede</th><th class="center">Peso</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Aplicabilidade</strong></td><td>Viabilidade prática de implementação com a estrutura atual do escritório</td><td class="center">3</td></tr>
-      <tr><td><strong>Impacto</strong></td><td>Dimensão do benefício gerado (tempo, custo, clientes, qualidade)</td><td class="center">3</td></tr>
-      <tr><td><strong>Custo-benefício</strong></td><td>Relação entre o investimento necessário e o retorno esperado</td><td class="center">2</td></tr>
-      <tr><td><strong>Originalidade</strong></td><td>Grau de novidade da proposta em relação às práticas atuais</td><td class="center">2</td></tr>
-    </tbody>
-  </table>
-  <p><span class="art">§ 1º.</span> Serão consideradas aprovadas as ideias que atingirem pontuação ponderada igual ou superior a 70% (setenta por cento) do total possível e cuja implementação seja autorizada pela gestão.</p>
-  <p><span class="art">§ 2º.</span> A aprovação da ideia não obriga o escritório a implementá-la de imediato, podendo a execução ser programada conforme a conveniência operacional e financeira.</p>
-  <p><span class="art">§ 3º.</span> O resultado da avaliação será comunicado aos autores e registrado em ata simplificada, com a justificativa da decisão.</p>
-
-  <h2>CAPÍTULO VI — DA PREMIAÇÃO</h2>
-  <p><span class="art">Art. 8º.</span> O autor de ideia aprovada e implementada fará jus a prêmio em dinheiro, concedido por liberalidade do escritório em razão de desempenho superior ao ordinariamente esperado no exercício de suas atividades, observados os seguintes valores de referência:</p>
-  <table>
-    <thead><tr><th>Nível de impacto</th><th>Exemplos</th><th class="center">Valor de referência</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Leve</strong></td><td>Melhoria pontual de rotina, organização de fluxo, padronização de documento</td><td class="center">R$ 150,00</td></tr>
-      <tr><td><strong>Médio</strong></td><td>Economia mensurável de tempo ou custo, redução comprovada de erros ou retrabalho</td><td class="center">R$ 300,00</td></tr>
-      <tr><td><strong>Alto</strong></td><td>Aumento de captação de clientes, novo serviço ou fluxo, economia relevante e permanente</td><td class="center">R$ 500,00 a R$ 1.000,00</td></tr>
-    </tbody>
-  </table>
-  <p><span class="art">§ 1º.</span> O enquadramento do nível de impacto e a fixação do valor do prêmio competem exclusivamente ao Comitê de Avaliação, caso a caso, à luz do resultado efetivamente verificado ou razoavelmente projetado.</p>
-  <p><span class="art">§ 2º.</span> O prêmio será pago em folha, em rubrica própria de prêmio, no mês subsequente à decisão do Comitê, ou, no caso de ideias cujo resultado dependa de verificação, após a comprovação do benefício.</p>
-  <p><span class="art">§ 3º.</span> A existência do Programa não assegura premiação em todos os meses: somente haverá pagamento quando houver ideia aprovada nos termos deste Regulamento.</p>
-  <p><span class="art">§ 4º.</span> Havendo ideias idênticas ou substancialmente semelhantes, prevalecerá a que tiver sido submetida primeiro.</p>
-
-  <h2>CAPÍTULO VII — DA NATUREZA JURÍDICA DO PRÊMIO</h2>
-  <p><span class="art">Art. 9º.</span> Os prêmios concedidos no âmbito deste Programa constituem liberalidade do empregador, paga em razão de desempenho superior ao ordinariamente esperado, nos exatos termos do art. 457, §§ 2º e 4º, da CLT, com a redação dada pela Lei nº 13.467/2017, e, portanto:</p>
-  <ul>
-    <li>não integram a remuneração do empregado;</li>
-    <li>não se incorporam ao contrato de trabalho;</li>
-    <li>não constituem base de incidência de encargos trabalhistas;</li>
-    <li>não integram o salário de contribuição, nos termos do art. 28, § 9º, alínea “z”, da Lei nº 8.212/1991, incluída pela Lei nº 13.467/2017.</li>
-  </ul>
-  <p><span class="art">§ 1º.</span> A apresentação de ideias não constitui atribuição contratual dos empregados nem condição para a manutenção do emprego, tratando-se de conduta voluntária que excede o desempenho ordinariamente esperado das funções de cada cargo.</p>
-  <p><span class="art">§ 2º.</span> O prêmio não substitui, no todo ou em parte, qualquer parcela salarial ajustada, não possui caráter de contraprestação habitual e não gera expectativa de pagamento futuro, ainda que o mesmo empregado venha a ser premiado mais de uma vez.</p>
-  <p><span class="art">§ 3º.</span> Cada concessão será documentada com a identificação da ideia, a justificativa do Comitê e a demonstração do desempenho superior, para fins de comprovação perante as autoridades fiscais e trabalhistas.</p>
-
-  <h2>CAPÍTULO VIII — DA IMPLEMENTAÇÃO E DA TITULARIDADE DAS IDEIAS</h2>
-  <p><span class="art">Art. 10.</span> As ideias submetidas ao Programa, premiadas ou não, poderão ser livremente utilizadas, adaptadas e implementadas pelo escritório, que será o titular exclusivo dos processos, materiais, métodos e rotinas delas resultantes.</p>
-  <p><span class="art">Parágrafo único.</span> A submissão da ideia implica concordância do autor com os termos deste Regulamento e autorização para uso institucional da proposta, sem prejuízo do reconhecimento interno da autoria.</p>
-
-  <h2>CAPÍTULO IX — DAS DISPOSIÇÕES FINAIS</h2>
-  <p><span class="art">Art. 11.</span> Este Programa vigorará por 12 (doze) meses a contar de sua divulgação, podendo ser renovado, alterado, suspenso ou encerrado a qualquer tempo pela gestão, mediante comunicação à equipe, sem direito a indenização ou compensação de qualquer natureza.</p>
-  <p><span class="art">Art. 12.</span> Os casos omissos serão resolvidos pelo sócio-gestor, cujas decisões são definitivas no âmbito do Programa.</p>
-  <p><span class="art">Art. 13.</span> Este Regulamento entra em vigor na data de sua divulgação à equipe.</p>
-
-  <div class="assinatura">
-    <p style="text-align:center">Ubá/MG, ____ de ______________ de 2026.</p>
-    <div class="line">_____________________________________</div>
-    <div class="nome">Arrais Advogados</div>
-    <div>Sócio-gestor</div>
+<nav>
+  <div class="wrap">
+    <div class="brand">ARRAIS <span>ADVOGADOS</span></div>
+    <button class="menu-btn" onclick="document.getElementById('nl').classList.toggle('open')">&#9776;</button>
+    <div class="links" id="nl">
+      <a href="#programa">O Programa</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#funciona">Como funciona</a>
+      <a href="#criterios">Critérios</a>
+      <a href="#premiacao">Premiação</a>
+      <a href="#avaliar">Avaliar ideia</a>
+    </div>
   </div>
+</nav>
 
-  <h2 class="anexo-title">ANEXO I — FORMULÁRIO DE SUBMISSÃO DE IDEIA</h2>
-  <p class="nota">Preencha e envie ao gestor responsável até o dia 25 de cada mês.</p>
-  <table class="form">
-    <tbody>
-      <tr><td class="lbl">Nome do(s) autor(es)</td><td class="fill"></td></tr>
-      <tr><td class="lbl">Data da submissão</td><td class="fill"></td></tr>
-      <tr><td class="lbl">Categoria (A, B ou C)</td><td class="fill"></td></tr>
-      <tr><td class="lbl">Problema ou oportunidade identificada</td><td class="fill"></td></tr>
-      <tr><td class="lbl">Solução proposta (como funcionaria na prática)</td><td class="fill"></td></tr>
-      <tr><td class="lbl">Benefício esperado (tempo, custo, clientes, qualidade)</td><td class="fill"></td></tr>
-      <tr><td class="lbl">Recursos necessários (se houver)</td><td class="fill"></td></tr>
-    </tbody>
-  </table>
-  <p style="font-weight:bold; margin-top:18px;">Uso exclusivo do Comitê de Avaliação:</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Aplicabilidade (1-5)</th><th>Impacto (1-5)</th><th>Custo-benefício (1-5)</th><th>Originalidade (1-5)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
-      <tr>
-        <td class="lbl">Resultado</td>
-        <td>(&nbsp;&nbsp;&nbsp;) Aprovada &nbsp;&nbsp; (&nbsp;&nbsp;&nbsp;) Reprovada</td>
-        <td class="lbl">Nível de impacto</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">Regulamento Interno</span>
+    <h1>Programa <b>Ideia Premiada</b></h1>
+    <p class="lead">Tem uma ideia que resolve um problema, melhora uma rotina ou faz o escritório crescer? Aqui ela pode virar <b>prêmio em dinheiro</b>. Entenda como funciona e avalie ideias com a calculadora oficial.</p>
+    <div class="cta">
+      <a href="#avaliar" class="btn">Avaliar uma ideia</a>
+      <a href="#programa" class="btn ghost">Entender o programa</a>
+    </div>
+    <div class="firma">Arrais Advogados — Ubá/MG</div>
+  </div>
+</header>
 
-  <footer>Arrais Advogados — Programa Ideia Premiada</footer>
-
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">3</div><div class="l">categorias de ideias</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">critérios de avaliação</div></div>
+    <div class="stat"><div class="n">70%</div><div class="l">mínimo para aprovar</div></div>
+    <div class="stat"><div class="n">R$1.000</div><div class="l">prêmio máximo</div></div>
+  </div>
 </div>
+
+<section id="programa">
+  <div class="wrap">
+    <div class="eyebrow">O que é</div>
+    <h2 class="sec">Um incentivo para boas ideias</h2>
+    <p class="sub">O Programa Ideia Premiada estimula a equipe a sugerir soluções, aperfeiçoamentos e novidades que melhorem o dia a dia do escritório e o atendimento aos clientes.</p>
+    <p>O objetivo é simples: transformar o conhecimento de quem vive a rotina do escritório em melhorias reais. Cada empregado pode apresentar quantas ideias quiser, sozinho ou em grupo de até 3 pessoas, e as melhores são premiadas.</p>
+    <p>O Programa é uma <b>liberalidade do escritório</b>, de caráter facultativo, podendo ser alterado, suspenso ou encerrado a qualquer tempo. Participar é voluntário e não faz parte das obrigações do cargo.</p>
+
+    <div class="cards" style="margin-top:26px">
+      <div class="cat">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1F3864" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Quem pode participar</h3>
+        <p style="text-align:left;font-size:14px;color:var(--muted)">Todos os empregados CLT, de qualquer cargo, com contrato vigente na submissão e na premiação.</p>
+      </div>
+      <div class="cat">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1F3864" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V8l6-4 6 4v13"/><path d="M10 21v-5h4v5"/></svg></div>
+        <h3>Quem não participa</h3>
+        <p style="text-align:left;font-size:14px;color:var(--muted)">Sócios e advogados associados — a melhoria do escritório já faz parte da natureza dessa relação.</p>
+      </div>
+      <div class="cat">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1F3864" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 6.5L21 9l-5 4 1.5 7L12 16l-5.5 4L8 13 3 9l6.5-.5z"/></svg></div>
+        <h3>Por que vale a pena</h3>
+        <p style="text-align:left;font-size:14px;color:var(--muted)">Ideia aprovada e implementada gera prêmio em dinheiro e reconhecimento interno da autoria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="categorias" style="background:#eef2fa">
+  <div class="wrap">
+    <div class="eyebrow">Categorias</div>
+    <h2 class="sec">Três tipos de ideia</h2>
+    <p class="sub">Toda ideia se encaixa em uma destas categorias. Saber a categoria ajuda a descrever melhor a proposta.</p>
+    <div class="cards">
+      <div class="cat">
+        <span class="badge">Categoria A</span>
+        <h3>Solução de problema</h3>
+        <p style="text-align:left;font-size:14.5px;color:var(--muted)">Resolve ou reduz um problema recorrente: retrabalho, falhas de comunicação, atrasos, erros em cadastros ou protocolos.</p>
+      </div>
+      <div class="cat">
+        <span class="badge">Categoria B</span>
+        <h3>Aperfeiçoamento de processo</h3>
+        <p style="text-align:left;font-size:14.5px;color:var(--muted)">Torna uma rotina existente mais rápida, mais barata, mais segura ou com melhor experiência para o cliente.</p>
+      </div>
+      <div class="cat">
+        <span class="badge">Categoria C</span>
+        <h3>Inovação e crescimento</h3>
+        <p style="text-align:left;font-size:14.5px;color:var(--muted)">Cria um serviço, produto ou fluxo novo, amplia a captação de clientes ou fortalece a presença digital do escritório.</p>
+      </div>
+    </div>
+    <div class="note">Não são aceitas: reclamações sem proposta de solução; temas já implementados ou em implementação; ideias que violem a lei, o Código de Ética da OAB ou o Provimento nº 205/2021; ou que dependam só de aumento de despesa sem retorno.</div>
+  </div>
+</section>
+
+<section id="funciona">
+  <div class="wrap">
+    <div class="eyebrow">Como funciona</div>
+    <h2 class="sec">Do envio ao prêmio</h2>
+    <p class="sub">Cinco passos, em um ciclo mensal.</p>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h4>Envie a ideia</h4><p>Preencha o formulário e entregue ao gestor até o dia 25 de cada mês.</p></div>
+      <div class="step"><div class="num">2</div><h4>Comitê avalia</h4><p>Na 1ª semana do mês seguinte, o sócio-gestor e 1 associado analisam.</p></div>
+      <div class="step"><div class="num">3</div><h4>Notas de 1 a 5</h4><p>A ideia recebe nota em 4 critérios com pesos diferentes.</p></div>
+      <div class="step"><div class="num">4</div><h4>Resultado</h4><p>Atingindo 70% ou mais e sendo autorizada, a ideia é aprovada.</p></div>
+      <div class="step"><div class="num">5</div><h4>Prêmio</h4><p>Implementada, gera prêmio em dinheiro, pago em folha no mês seguinte.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="criterios" style="background:#eef2fa">
+  <div class="wrap">
+    <div class="eyebrow">Critérios</div>
+    <h2 class="sec">Como a ideia é pontuada</h2>
+    <p class="sub">Cada critério recebe nota de 1 a 5 e tem um peso. A pontuação máxima é 50 pontos; aprova com 70% (35 pontos).</p>
+    <div class="crit-grid">
+      <table class="tbl">
+        <thead><tr><th>Critério</th><th>O que mede</th><th class="c">Peso</th></tr></thead>
+        <tbody>
+          <tr><td><b>Aplicabilidade</b></td><td>Viabilidade prática com a estrutura atual do escritório</td><td class="c">3</td></tr>
+          <tr><td><b>Impacto</b></td><td>Dimensão do benefício (tempo, custo, clientes, qualidade)</td><td class="c">3</td></tr>
+          <tr><td><b>Custo-benefício</b></td><td>Relação entre o investimento e o retorno esperado</td><td class="c">2</td></tr>
+          <tr><td><b>Originalidade</b></td><td>Grau de novidade frente às práticas atuais</td><td class="c">2</td></tr>
+        </tbody>
+      </table>
+      <div class="donut-box">
+        <svg width="180" height="180" viewBox="0 0 42 42" aria-label="Distribuicao dos pesos">
+          <circle cx="21" cy="21" r="15.9155" fill="#fff"></circle>
+          <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="#1F3864" stroke-width="6" stroke-dasharray="30 70" stroke-dashoffset="25"></circle>
+          <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="#2c4a82" stroke-width="6" stroke-dasharray="30 70" stroke-dashoffset="-5"></circle>
+          <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="#C8A24B" stroke-width="6" stroke-dasharray="20 80" stroke-dashoffset="-35"></circle>
+          <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="#d8b876" stroke-width="6" stroke-dasharray="20 80" stroke-dashoffset="-55"></circle>
+          <text x="21" y="20" text-anchor="middle" font-size="5.5" font-weight="bold" fill="#1F3864">Pesos</text>
+          <text x="21" y="26" text-anchor="middle" font-size="3.2" fill="#5b6473">total 10</text>
+        </svg>
+        <div class="legend">
+          <div class="row"><span class="dot" style="background:#1F3864"></span> Aplicabilidade — peso 3 (30%)</div>
+          <div class="row"><span class="dot" style="background:#2c4a82"></span> Impacto — peso 3 (30%)</div>
+          <div class="row"><span class="dot" style="background:#C8A24B"></span> Custo-benefício — peso 2 (20%)</div>
+          <div class="row"><span class="dot" style="background:#d8b876"></span> Originalidade — peso 2 (20%)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="premiacao">
+  <div class="wrap">
+    <div class="eyebrow">Premiação</div>
+    <h2 class="sec">Quanto vale uma boa ideia</h2>
+    <p class="sub">O valor depende do nível de impacto da ideia aprovada e implementada. São valores de referência.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="lvl">Impacto leve</div>
+        <div class="val">R$ 150</div>
+        <div class="ex">Melhoria pontual de rotina, organização de fluxo, padronização de documento.</div>
+      </div>
+      <div class="tier mid">
+        <div class="lvl">Impacto médio</div>
+        <div class="val">R$ 300</div>
+        <div class="ex">Economia mensurável de tempo ou custo, redução comprovada de erros ou retrabalho.</div>
+      </div>
+      <div class="tier">
+        <div class="lvl">Impacto alto</div>
+        <div class="val">R$ 500 a R$ 1.000</div>
+        <div class="ex">Aumento de captação, novo serviço ou fluxo, economia relevante e permanente.</div>
+      </div>
+    </div>
+    <div class="note"><b>Natureza jurídica:</b> os prêmios são liberalidade do empregador por desempenho superior ao ordinariamente esperado (art. 457, §§ 2º e 4º, da CLT). Não integram a remuneração, não se incorporam ao contrato, não geram encargos nem expectativa de pagamento futuro. O enquadramento do nível e o valor competem exclusivamente ao Comitê de Avaliação (Art. 8º, § 1º).</div>
+  </div>
+</section>
+
+<section id="avaliar">
+  <div class="wrap">
+    <div class="eyebrow">Calculadora oficial</div>
+    <h2 class="sec">Avalie uma ideia</h2>
+    <p class="sub">Dê uma nota de 1 a 5 em cada critério. O resultado mostra a pontuação, se a ideia atinge os 70% para aprovação e a faixa de prêmio sugerida. Serve para o Comitê avaliar e para o empregado simular antes de enviar.</p>
+    <div class="calc">
+      <div class="calc-card">
+        <div class="crit-item">
+          <div class="top"><div class="name">Aplicabilidade <small>Dá para implementar com a estrutura atual?</small></div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-aplic">3</span></div></div>
+          <input type="range" min="1" max="5" value="3" id="aplic" oninput="calc()">
+          <div class="scale"><span>1 Muito baixa</span><span>3</span><span>5 Muito alta</span></div>
+        </div>
+        <div class="crit-item">
+          <div class="top"><div class="name">Impacto <small>Tamanho do benefício gerado</small></div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-impacto">3</span></div></div>
+          <input type="range" min="1" max="5" value="3" id="impacto" oninput="calc()">
+          <div class="scale"><span>1 Muito baixo</span><span>3</span><span>5 Muito alto</span></div>
+        </div>
+        <div class="crit-item">
+          <div class="top"><div class="name">Custo-benefício <small>Retorno em relação ao investimento</small></div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-custo">3</span></div></div>
+          <input type="range" min="1" max="5" value="3" id="custo" oninput="calc()">
+          <div class="scale"><span>1 Ruim</span><span>3</span><span>5 Ótimo</span></div>
+        </div>
+        <div class="crit-item">
+          <div class="top"><div class="name">Originalidade <small>Grau de novidade da proposta</small></div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-orig">3</span></div></div>
+          <input type="range" min="1" max="5" value="3" id="orig" oninput="calc()">
+          <div class="scale"><span>1 Comum</span><span>3</span><span>5 Inovadora</span></div>
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="gauge">
+          <div class="pct"><span id="pct">60</span><small>%</small></div>
+          <div style="font-size:13px;color:var(--muted)">Pontuação: <b id="pts">30</b> de 50</div>
+          <div class="bar"><i id="barfill"></i></div>
+          <div class="thresh">aprova com 70%</div>
+        </div>
+        <div class="status no" id="status">Reprovada</div>
+        <div class="resrow"><span>Nível de impacto</span><b id="nivel">—</b></div>
+        <div class="resrow"><span>Prêmio de referência</span><b id="valor">—</b></div>
+        <p class="disc">Sugestão orientativa baseada nas notas. O enquadramento do nível de impacto e a fixação do valor competem exclusivamente ao Comitê de Avaliação (Art. 8º, § 1º), e a aprovação depende também de autorização da gestão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>Arrais Advogados</b> — Programa Ideia Premiada<br>
+    Ubá/MG — Direito Previdenciário e Trabalhista
+    <div class="leis">Regulamento interno · Fundamento: art. 457, §§ 2º e 4º, da CLT (Lei nº 13.467/2017)</div>
+  </div>
+</footer>
+
+<script>
+  var W = {aplic:3, impacto:3, custo:2, orig:2};
+  function calc(){
+    var a=+document.getElementById('aplic').value;
+    var i=+document.getElementById('impacto').value;
+    var c=+document.getElementById('custo').value;
+    var o=+document.getElementById('orig').value;
+    document.getElementById('v-aplic').textContent=a;
+    document.getElementById('v-impacto').textContent=i;
+    document.getElementById('v-custo').textContent=c;
+    document.getElementById('v-orig').textContent=o;
+
+    var pts = a*W.aplic + i*W.impacto + c*W.custo + o*W.orig;
+    var pct = Math.round(pts/50*100);
+    var ok = pct>=70;
+
+    document.getElementById('pts').textContent=pts;
+    document.getElementById('pct').textContent=pct;
+    var fill=document.getElementById('barfill');
+    fill.style.width=pct+'%';
+    fill.style.background = ok ? '#1f7a4d' : (pct>=55 ? '#C8A24B' : '#b23a3a');
+
+    var st=document.getElementById('status');
+    if(ok){ st.className='status ok'; st.textContent='✓ Aprovada (atinge os 70%)'; }
+    else { st.className='status no'; st.textContent='✗ Reprovada (abaixo de 70%)'; }
+
+    var nivel='—', valor='—';
+    if(ok){
+      if(i<=2){ nivel='Leve'; valor='R$ 150,00'; }
+      else if(i===3){ nivel='Médio'; valor='R$ 300,00'; }
+      else { nivel='Alto'; valor='R$ 500,00 a R$ 1.000,00'; }
+    }
+    document.getElementById('nivel').textContent=nivel;
+    document.getElementById('valor').textContent=valor;
+  }
+  calc();
+</script>
 </body>
 </html>
