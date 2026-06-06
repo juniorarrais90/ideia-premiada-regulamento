@@ -298,6 +298,7 @@
         <textarea id="descricao" name="descricao" required placeholder="Qual problema/oportunidade você identificou, qual a solução proposta e qual o benefício esperado (tempo, custo, clientes, qualidade)."></textarea>
       </div>
       <input type="hidden" name="_subject" value="Nova ideia - Programa Ideia Premiada">
+      <input type="hidden" name="link_avaliacao" id="link_avaliacao">
       <button type="submit" class="btn-send">Enviar ideia</button>
       <p class="hint">Ao enviar, você concorda com os termos do Regulamento e autoriza o uso institucional da proposta, com reconhecimento da autoria.</p>
     </form>
@@ -314,7 +315,7 @@
     <b>Arrais Advogados</b> — Programa Ideia Premiada<br>
     Ubá/MG — Direito Previdenciário e Trabalhista
     <div class="leis">Regulamento interno · Fundamento: art. 457, §§ 2º e 4º, da CLT (Lei nº 13.467/2017)</div>
-    <div class="leis"><a href="avaliar.html">Área do Comitê (avaliação)</a></div>
+    <div style="margin-top:18px"><a href="avaliar.html" style="display:inline-block;background:#C8A24B;color:#22324f;font-weight:bold;padding:12px 22px;border-radius:8px;text-decoration:none">🧮 Calculadora oficial — acesso dos avaliadores</a></div>
   </div>
 </footer>
 
@@ -329,6 +330,19 @@
       return;
     }
     btn.disabled = true; btn.textContent = 'Enviando...';
+    try{
+      var dados = {
+        n: document.getElementById('nome').value,
+        s: document.getElementById('setor').value,
+        e: document.getElementById('email').value,
+        c: document.getElementById('categoria').value,
+        t: document.getElementById('titulo').value,
+        d: document.getElementById('descricao').value
+      };
+      var enc = btoa(unescape(encodeURIComponent(JSON.stringify(dados))));
+      var base = location.href.split('#')[0].split('?')[0].replace(/index\.html$/,'').replace(/\/$/,'');
+      document.getElementById('link_avaliacao').value = base + '/avaliar.html#d=' + encodeURIComponent(enc);
+    }catch(errLink){}
     try{
       var resp = await fetch(endpoint, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
       if(resp.ok){

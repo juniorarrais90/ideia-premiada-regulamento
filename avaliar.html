@@ -233,7 +233,7 @@
   function abrir(){
     document.getElementById('gate').style.display='none';
     document.getElementById('app').style.display='block';
-    initDate(); calc();
+    initDate(); prefillFromHash(); calc();
   }
   function sair(){ sessionStorage.removeItem('comite_ok'); location.reload(); }
   function initDate(){
@@ -243,6 +243,20 @@
   }
   if(sessionStorage.getItem('comite_ok')==='1'){ abrir(); }
 
+  function prefillFromHash(){
+    try{
+      var m=(location.hash||'').match(/d=([^&]+)/);
+      if(!m) return;
+      var o=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
+      if(o.n) document.getElementById('f-autor').value = o.n + (o.s ? (' ('+o.s+')') : '');
+      if(o.c) document.getElementById('f-cat').value = o.c;
+      if(o.t) document.getElementById('f-titulo').value = o.t;
+      if(o.d){
+        var extra = o.e ? ('\n\nContato do autor: '+o.e) : '';
+        document.getElementById('f-desc').value = o.d + extra;
+      }
+    }catch(e){}
+  }
   function v(id){ return document.getElementById(id).value; }
   function compute(){
     var a=+v('aplic'), i=+v('impacto'), c=+v('custo'), o=+v('orig');
