@@ -103,14 +103,13 @@
   .gate-card button{width:100%;background:var(--navy);color:#fff;border:0;padding:13px;border-radius:8px;font-weight:bold;font-size:15px;cursor:pointer}
   .gate-err{display:none;color:var(--red);font-size:13px;margin-bottom:10px}
   #app{display:none}
-  .calc{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start;margin-top:6px}
+  .calc{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start;margin-top:6px}
   @media(max-width:880px){.calc{grid-template-columns:1fr}}
   .calc-left{display:flex;flex-direction:column;gap:20px}
   .calc-card{background:#fff;color:var(--ink);border-radius:16px;padding:28px;border:1px solid var(--line);box-shadow:0 6px 22px rgba(20,35,63,.06)}
   .calc-card h3.ct{color:var(--navy);font-size:17px;margin-bottom:4px}
   .calc-card .ct-sub{color:var(--muted);font-size:12.5px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-  .av-badge{display:inline-block;font-size:12px;font-weight:bold;color:#fff;background:var(--gold);color:#22324f;padding:2px 10px;border-radius:20px;margin-left:6px}
-  .crit-item{margin-bottom:18px}
+  .crit-item{margin-bottom:16px}
   .crit-item .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;gap:10px}
   .crit-item .name{font-weight:bold;font-size:14.5px}
   .crit-item .peso{font-size:11.5px;background:#eef2fa;color:var(--navy);padding:2px 8px;border-radius:20px;font-weight:bold}
@@ -118,26 +117,38 @@
   input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:7px;border-radius:6px;background:#dce3f0;outline:none;margin-top:4px}
   input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.3)}
   input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid #fff}
+  .suaPts{background:#f5f7fb;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13.5px;color:var(--muted);margin:6px 0 14px}
+  .suaPts b{color:var(--navy);font-size:16px}
+  .btn-save{width:100%;background:var(--navy);color:#fff;border:0;padding:13px;border-radius:10px;font-weight:bold;font-size:15px;cursor:pointer}
+  .btn-save:hover{background:#15233f}
+  .savemsg{font-size:13px;margin-top:10px;text-align:center;display:none}
+  .savemsg.ok{color:var(--green)} .savemsg.err{color:var(--red)}
   .result{background:#fff;color:var(--ink);border-radius:16px;padding:28px;border:1px solid var(--line);box-shadow:0 6px 22px rgba(20,35,63,.06);position:sticky;top:80px}
-  .gauge{text-align:center;margin-bottom:14px}
-  .pct{font-size:46px;font-weight:bold;color:var(--navy);line-height:1}
-  .pct small{font-size:18px;color:var(--muted)}
-  .bar{height:12px;background:#e7ecf5;border-radius:8px;overflow:hidden;margin:14px 0 6px}
+  .reg{margin-bottom:16px}
+  .reg h4{font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:8px}
+  .reg .item{display:flex;justify-content:space-between;background:#f5f7fb;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13.5px;margin-bottom:6px}
+  .reg .item b{color:var(--navy)}
+  .reg .empty{font-size:13px;color:var(--muted);font-style:italic}
+  .reg .wait{font-size:12.5px;color:#9a6a00;background:#fff6e0;border:1px solid #f0d98a;border-radius:8px;padding:8px 10px;margin-top:4px}
+  .gauge{text-align:center;margin:6px 0 14px}
+  .gauge .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:bold}
+  .pct{font-size:44px;font-weight:bold;color:var(--navy);line-height:1}
+  .pct small{font-size:17px;color:var(--muted)}
+  .bar{height:12px;background:#e7ecf5;border-radius:8px;overflow:hidden;margin:12px 0 6px}
   .bar > i{display:block;height:100%;width:0;border-radius:8px;background:var(--navy);transition:width .35s ease}
   .thresh{font-size:12px;color:var(--muted);text-align:right}
-  .status{padding:13px;border-radius:10px;text-align:center;font-weight:bold;font-size:15.5px;margin:14px 0}
+  .status{padding:12px;border-radius:10px;text-align:center;font-weight:bold;font-size:15px;margin:12px 0}
   .status.ok{background:var(--greenbg);color:var(--green)}
   .status.no{background:var(--redbg);color:var(--red)}
-  .twocol{display:flex;gap:10px;margin:10px 0}
-  .miniscore{flex:1;background:#f5f7fb;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
-  .miniscore .t{font-size:11.5px;color:var(--muted)}
-  .miniscore .s{font-size:17px;font-weight:bold;color:var(--navy)}
+  .status.none{background:#eef0f4;color:var(--muted)}
   .resrow{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
   .resrow:last-child{border-bottom:0}
   .resrow b{color:var(--navy)}
-  .btn-pdf{width:100%;margin-top:16px;background:var(--gold);color:#22324f;border:0;padding:14px;border-radius:10px;font-weight:bold;font-size:15px;cursor:pointer}
+  .btn-pdf{width:100%;margin-top:14px;background:var(--gold);color:#22324f;border:0;padding:14px;border-radius:10px;font-weight:bold;font-size:15px;cursor:pointer}
   .btn-pdf:hover{filter:brightness(.96)}
+  .btn-ref{width:100%;margin-top:8px;background:#fff;color:var(--navy);border:1px solid var(--line);padding:10px;border-radius:10px;font-weight:bold;font-size:13.5px;cursor:pointer}
   .disc{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5}
+  .cfgwarn{display:none;background:#fbecec;color:#b23a3a;border:1px solid #f0c2c2;border-radius:10px;padding:12px;font-size:13px;margin-bottom:16px}
   .pagehead{padding:30px 0 0}
 </style>
 </head>
@@ -165,10 +176,11 @@
 <div class="wrap pagehead">
   <div class="eyebrow" style="color:var(--gold)">Calculadora oficial</div>
   <h2 class="sec">Avaliação de ideia — Comitê</h2>
-  <p class="sub">Os dados da ideia vêm preenchidos pelo link recebido. Cada avaliador dá suas notas de 1 a 5; o sistema calcula a média e gera um PDF com as duas assinaturas.</p>
+  <p class="sub">Cada avaliador lança a SUA nota e salva. As avaliações se juntam automaticamente; quando os dois avaliarem, a média e o PDF ficam completos.</p>
 </div>
 
 <div class="wrap" style="padding-bottom:54px">
+  <div class="cfgwarn" id="cfgwarn">Servidor de avaliações ainda não configurado. As notas não serão salvas/juntadas até concluir a configuração.</div>
   <div class="calc">
     <div class="calc-left">
       <div class="calc-card">
@@ -186,41 +198,38 @@
       </div>
 
       <div class="calc-card">
-        <h3 class="ct">Notas <span class="av-badge">Avaliador 1</span></h3>
-        <div class="ct-sub" style="border:0;padding:0;margin-bottom:12px"><input type="text" id="f-aval1" placeholder="Nome do avaliador 1" style="width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:8px;font-size:13.5px"></div>
-        <div class="crit-item"><div class="top"><div class="name">Aplicabilidade</div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-a1">3</span></div></div><input type="range" min="1" max="5" value="3" id="a1" oninput="calc()"></div>
-        <div class="crit-item"><div class="top"><div class="name">Impacto</div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-i1">3</span></div></div><input type="range" min="1" max="5" value="3" id="i1" oninput="calc()"></div>
-        <div class="crit-item"><div class="top"><div class="name">Custo-benefício</div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-c1">3</span></div></div><input type="range" min="1" max="5" value="3" id="c1" oninput="calc()"></div>
-        <div class="crit-item" style="margin-bottom:0"><div class="top"><div class="name">Originalidade</div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-o1">3</span></div></div><input type="range" min="1" max="5" value="3" id="o1" oninput="calc()"></div>
-      </div>
-
-      <div class="calc-card">
-        <h3 class="ct">Notas <span class="av-badge">Avaliador 2</span></h3>
-        <div class="ct-sub" style="border:0;padding:0;margin-bottom:12px"><input type="text" id="f-aval2" placeholder="Nome do avaliador 2" style="width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:8px;font-size:13.5px"></div>
-        <div class="crit-item"><div class="top"><div class="name">Aplicabilidade</div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-a2">3</span></div></div><input type="range" min="1" max="5" value="3" id="a2" oninput="calc()"></div>
-        <div class="crit-item"><div class="top"><div class="name">Impacto</div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-i2">3</span></div></div><input type="range" min="1" max="5" value="3" id="i2" oninput="calc()"></div>
-        <div class="crit-item"><div class="top"><div class="name">Custo-benefício</div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-c2">3</span></div></div><input type="range" min="1" max="5" value="3" id="c2" oninput="calc()"></div>
-        <div class="crit-item" style="margin-bottom:0"><div class="top"><div class="name">Originalidade</div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-o2">3</span></div></div><input type="range" min="1" max="5" value="3" id="o2" oninput="calc()"></div>
+        <h3 class="ct">Sua avaliação</h3>
+        <div class="ct-sub" style="border:0;padding:0;margin-bottom:12px">Identifique-se e dê suas notas de 1 a 5.</div>
+        <div class="field"><label for="f-aval">Seu nome (avaliador)</label><input type="text" id="f-aval" placeholder="Seu nome"></div>
+        <div class="crit-item"><div class="top"><div class="name">Aplicabilidade</div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-a">3</span></div></div><input type="range" min="1" max="5" value="3" id="a" oninput="calcLocal()"></div>
+        <div class="crit-item"><div class="top"><div class="name">Impacto</div><div><span class="peso">peso 3</span> &nbsp; <span class="scoreval" id="v-i">3</span></div></div><input type="range" min="1" max="5" value="3" id="i" oninput="calcLocal()"></div>
+        <div class="crit-item"><div class="top"><div class="name">Custo-benefício</div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-c">3</span></div></div><input type="range" min="1" max="5" value="3" id="c" oninput="calcLocal()"></div>
+        <div class="crit-item"><div class="top"><div class="name">Originalidade</div><div><span class="peso">peso 2</span> &nbsp; <span class="scoreval" id="v-o">3</span></div></div><input type="range" min="1" max="5" value="3" id="o" oninput="calcLocal()"></div>
+        <div class="suaPts">Sua pontuação: <b id="suaPts">30</b> / 50</div>
+        <button class="btn-save" id="btnSalvar" onclick="salvar()">Salvar minha avaliação</button>
+        <div class="savemsg" id="saveMsg"></div>
       </div>
     </div>
 
     <div class="result">
+      <div class="reg">
+        <h4>Avaliações registradas</h4>
+        <div id="listaAvals"><div class="empty">Nenhuma avaliação salva ainda.</div></div>
+        <div class="wait" id="waitMsg" style="display:none">Aguardando o 2º avaliador para fechar a média.</div>
+      </div>
       <div class="gauge">
-        <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:bold">Resultado (média)</div>
-        <div class="pct"><span id="pct">60</span><small>%</small></div>
-        <div style="font-size:13px;color:var(--muted)">Pontuação média: <b id="pts">30</b> de 50</div>
+        <div class="lbl">Resultado (média)</div>
+        <div class="pct"><span id="pct">—</span><small>%</small></div>
+        <div style="font-size:13px;color:var(--muted)">Pontuação média: <b id="pts">—</b> de 50</div>
         <div class="bar"><i id="barfill"></i></div>
         <div class="thresh">aprova com 70%</div>
       </div>
-      <div class="twocol">
-        <div class="miniscore"><div class="t">Avaliador 1</div><div class="s" id="m1">30 · 60%</div></div>
-        <div class="miniscore"><div class="t">Avaliador 2</div><div class="s" id="m2">30 · 60%</div></div>
-      </div>
-      <div class="status no" id="status">Reprovada</div>
+      <div class="status none" id="status">Aguardando avaliações</div>
       <div class="resrow"><span>Nível de impacto</span><b id="nivel">—</b></div>
       <div class="resrow"><span>Prêmio de referência</span><b id="valor">—</b></div>
       <button class="btn-pdf" onclick="gerarPDF()">⬇ Gerar PDF da avaliação</button>
-      <p class="disc">Resultado pela média das duas avaliações. O enquadramento do nível e a fixação do valor competem ao Comitê de Avaliação (Art. 8º, § 1º), e a aprovação depende também de autorização da gestão.</p>
+      <button class="btn-ref" onclick="carregar()">↻ Atualizar avaliações</button>
+      <p class="disc">Resultado pela média das avaliações registradas. O enquadramento do nível e a fixação do valor competem ao Comitê de Avaliação (Art. 8º, § 1º), e a aprovação depende também de autorização da gestão.</p>
     </div>
   </div>
 </div>
@@ -228,11 +237,16 @@
 
 <script>
   var SENHA = "ideiarrais";
-  function entrar(){ var p=document.getElementById('senha').value; if(p===SENHA){ sessionStorage.setItem('comite_ok','1'); abrir(); } else { document.getElementById('gateErr').style.display='block'; } }
-  function abrir(){ document.getElementById('gate').style.display='none'; document.getElementById('app').style.display='block'; initDate(); prefillFromHash(); calc(); }
+  var API = "https://script.google.com/macros/s/AKfycbzflrkxXfIH05Pzlua-zEXZDxrq-BwkaTv07TY41EVRYiolCoGbOMBuBbXPgOM3TIRGHQ/exec";
+  var evalsCache = [];
+
+  function entrar(){ if(document.getElementById('senha').value===SENHA){ sessionStorage.setItem('comite_ok','1'); abrir(); } else { document.getElementById('gateErr').style.display='block'; } }
+  function abrir(){ document.getElementById('gate').style.display='none'; document.getElementById('app').style.display='block'; initDate(); prefillFromHash(); calcLocal(); if(API.indexOf('APPS_SCRIPT')!==-1){ document.getElementById('cfgwarn').style.display='block'; } else { carregar(); } }
   function sair(){ sessionStorage.removeItem('comite_ok'); location.reload(); }
   function initDate(){ var d=new Date(); var iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); var df=document.getElementById('f-data'); if(df && !df.value) df.value=iso; }
   if(sessionStorage.getItem('comite_ok')==='1'){ abrir(); }
+
+  function v(id){ return document.getElementById(id).value; }
 
   function prefillFromHash(){
     try{
@@ -246,56 +260,110 @@
     }catch(e){}
   }
 
-  function v(id){ return document.getElementById(id).value; }
-  function um(p){
-    var a=+v('a'+p), i=+v('i'+p), c=+v('c'+p), o=+v('o'+p);
-    var pts=a*3+i*3+c*2+o*2;
-    return {a:a,i:i,c:c,o:o,pts:pts,pct:Math.round(pts/50*100)};
+  function getKey(){
+    var m=(location.hash||'').match(/d=([^&]+)/);
+    var base = m ? m[1] : (v('f-titulo')||'sem-id');
+    var h=0; for(var k=0;k<base.length;k++){ h=(h*31 + base.charCodeAt(k))>>>0; }
+    return 'k'+h.toString(36);
   }
+
+  function ptsDe(o){ return (+o.a)*3+(+o.i)*3+(+o.c)*2+(+o.o)*2; }
+
+  function calcLocal(){
+    ['a','i','c','o'].forEach(function(id){ document.getElementById('v-'+id).textContent=v(id); });
+    document.getElementById('suaPts').textContent = ptsDe({a:v('a'),i:v('i'),c:v('c'),o:v('o')});
+  }
+
   function fmt(n){ return (Math.round(n*10)/10).toString().replace('.',','); }
-  function compute(){
-    var r1=um('1'), r2=um('2');
-    var media=(r1.pts+r2.pts)/2;
-    var pct=Math.round(media/50*100);
-    var ok=pct>=70;
-    var impAvg=(r1.i+r2.i)/2;
+
+  function resultado(){
+    var evs=evalsCache||[];
+    if(!evs.length) return null;
+    var soma=0, somaImp=0;
+    evs.forEach(function(e){ soma+=(+e.pts); somaImp+=(+e.i); });
+    var media=soma/evs.length, impAvg=somaImp/evs.length;
+    var pct=Math.round(media/50*100), ok=pct>=70;
     var nivel='—', valor='—';
     if(ok){
       if(impAvg<2.5){nivel='Leve';valor='R$ 150,00';}
       else if(impAvg<3.5){nivel='Médio';valor='R$ 300,00';}
       else { nivel='Alto'; valor = media<=41?'R$ 500,00':(media<=46?'R$ 750,00':'R$ 1.000,00'); }
     }
-    return {r1:r1,r2:r2,media:media,pct:pct,ok:ok,nivel:nivel,valor:valor};
+    return {media:media,pct:pct,ok:ok,nivel:nivel,valor:valor,n:evs.length};
   }
-  function calc(){
-    ['a1','i1','c1','o1','a2','i2','c2','o2'].forEach(function(id){ document.getElementById('v-'+id).textContent=v(id); });
-    var r=compute();
-    document.getElementById('pts').textContent=fmt(r.media);
+
+  function render(){
+    var lista=document.getElementById('listaAvals');
+    var evs=evalsCache||[];
+    if(!evs.length){ lista.innerHTML='<div class="empty">Nenhuma avaliação salva ainda.</div>'; }
+    else {
+      lista.innerHTML = evs.map(function(e){
+        var p=(+e.pts), pc=Math.round(p/50*100);
+        return '<div class="item"><span>'+escapeHtml(e.avaliador)+'</span><b>'+p+' · '+pc+'%</b></div>';
+      }).join('');
+    }
+    document.getElementById('waitMsg').style.display = (evs.length===1)?'block':'none';
+    var r=resultado();
+    var st=document.getElementById('status');
+    if(!r){
+      document.getElementById('pct').textContent='—';
+      document.getElementById('pts').textContent='—';
+      document.getElementById('barfill').style.width='0%';
+      st.className='status none'; st.textContent='Aguardando avaliações';
+      document.getElementById('nivel').textContent='—';
+      document.getElementById('valor').textContent='—';
+      return;
+    }
     document.getElementById('pct').textContent=r.pct;
+    document.getElementById('pts').textContent=fmt(r.media);
     var fill=document.getElementById('barfill'); fill.style.width=r.pct+'%';
     fill.style.background=r.ok?'#1f7a4d':(r.pct>=55?'#C8A24B':'#b23a3a');
-    document.getElementById('m1').textContent=r.r1.pts+' · '+r.r1.pct+'%';
-    document.getElementById('m2').textContent=r.r2.pts+' · '+r.r2.pct+'%';
-    var st=document.getElementById('status');
-    if(r.ok){st.className='status ok';st.textContent='✓ Aprovada (média atinge os 70%)';}
-    else{st.className='status no';st.textContent='✗ Reprovada (média abaixo de 70%)';}
+    if(r.ok){ st.className='status ok'; st.textContent='✓ Aprovada (média atinge os 70%)'+(r.n<2?' — parcial':''); }
+    else { st.className='status no'; st.textContent='✗ Reprovada (média abaixo de 70%)'+(r.n<2?' — parcial':''); }
     document.getElementById('nivel').textContent=r.nivel;
     document.getElementById('valor').textContent=r.valor;
   }
+
+  function escapeHtml(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  async function carregar(){
+    if(API.indexOf('APPS_SCRIPT')!==-1) return;
+    try{
+      var r=await fetch(API+'?key='+encodeURIComponent(getKey()));
+      var j=await r.json();
+      if(j.ok){ evalsCache=j.evals||[]; render(); }
+    }catch(e){ /* silencioso */ }
+  }
+
+  async function salvar(){
+    var nome=v('f-aval').trim();
+    var msg=document.getElementById('saveMsg');
+    if(!nome){ msg.className='savemsg err'; msg.style.display='block'; msg.textContent='Informe o seu nome.'; return; }
+    if(API.indexOf('APPS_SCRIPT')!==-1){ msg.className='savemsg err'; msg.style.display='block'; msg.textContent='Servidor ainda não configurado.'; return; }
+    var btn=document.getElementById('btnSalvar'); btn.disabled=true; btn.textContent='Salvando...';
+    var payload={ key:getKey(), titulo:v('f-titulo'), autor:v('f-autor'), avaliador:nome, a:+v('a'), i:+v('i'), c:+v('c'), o:+v('o') };
+    try{
+      var r=await fetch(API,{method:'POST',body:JSON.stringify(payload)});
+      var j=await r.json();
+      if(j.ok){ evalsCache=j.evals||[]; render(); msg.className='savemsg ok'; msg.style.display='block'; msg.textContent='✓ Avaliação salva!'; }
+      else { throw new Error(j.error||'falha'); }
+    }catch(e){ msg.className='savemsg err'; msg.style.display='block'; msg.textContent='Não foi possível salvar. Tente novamente.'; }
+    btn.disabled=false; btn.textContent='Salvar minha avaliação';
+  }
+
   function dataBR(iso){ if(!iso) return new Date().toLocaleDateString('pt-BR'); var p=iso.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; }
 
   function gerarPDF(){
-    if(!window.jspdf || !window.jspdf.jsPDF){ alert('Não foi possível carregar o gerador de PDF. Verifique a conexão e tente novamente.'); return; }
-    var r=compute();
+    if(!window.jspdf || !window.jspdf.jsPDF){ alert('Não foi possível carregar o gerador de PDF.'); return; }
+    var evs=evalsCache||[];
+    if(!evs.length){ alert('Ainda não há avaliações salvas para gerar o PDF.'); return; }
+    var r=resultado();
     var autor=v('f-autor').trim()||'(não informado)';
     var cat=v('f-cat')||'(não informada)';
     var titulo=v('f-titulo').trim()||'(não informado)';
     var desc=v('f-desc').trim()||'(não informada)';
-    var av1=v('f-aval1').trim()||'(não informado)';
-    var av2=v('f-aval2').trim()||'(não informado)';
     var data=dataBR(v('f-data'));
-    var jsPDF=window.jspdf.jsPDF;
-    var doc=new jsPDF({unit:'pt',format:'a4'});
+    var jsPDF=window.jspdf.jsPDF; var doc=new jsPDF({unit:'pt',format:'a4'});
     var W=doc.internal.pageSize.getWidth(); var M=50; var maxW=W-M*2;
     doc.setFillColor(31,56,100); doc.rect(0,0,W,76,'F');
     doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(17); doc.text('ARRAIS ADVOGADOS', M, 33);
@@ -308,38 +376,44 @@
     field('Autor(es):',autor); field('Categoria:',cat); field('Título:',titulo); field('Descrição:',desc);
 
     y+=4; secTitle('AVALIAÇÃO DO COMITÊ');
-    var rows=[['Aplicabilidade',3,r.r1.a,r.r2.a],['Impacto',3,r.r1.i,r.r2.i],['Custo-benefício',2,r.r1.c,r.r2.c],['Originalidade',2,r.r1.o,r.r2.o]];
-    var c1=M+6,cP=M+250,cN1=M+330,cN2=M+430;
-    doc.setFont('helvetica','bold'); doc.setFontSize(10.5); doc.setFillColor(31,56,100); doc.setTextColor(255,255,255); doc.rect(M,y-11,maxW,20,'F');
-    doc.text('Critério',c1,y+3); doc.text('Peso',cP,y+3); doc.text('Aval. 1',cN1,y+3); doc.text('Aval. 2',cN2,y+3); y+=20;
-    doc.setTextColor(30,35,48); doc.setFont('helvetica','normal');
-    for(var k=0;k<rows.length;k++){ doc.text(String(rows[k][0]),c1,y+3); doc.text(String(rows[k][1]),cP+4,y+3); doc.text(String(rows[k][2]),cN1+6,y+3); doc.text(String(rows[k][3]),cN2+6,y+3); doc.setDrawColor(225,229,238); doc.line(M,y+8,W-M,y+8); y+=19; }
-    doc.setFont('helvetica','bold');
-    doc.text('Pontuação',c1,y+3); doc.text(r.r1.pts+'/50 ('+r.r1.pct+'%)',cN1-6,y+3); doc.text(r.r2.pts+'/50 ('+r.r2.pct+'%)',cN2-6,y+3); y+=24;
+    var crit=[['Aplicabilidade','a',3],['Impacto','i',3],['Custo-benefício','c',2],['Originalidade','o',2]];
+    var nev=Math.min(evs.length,3);
+    var cCrit=M+4, cPeso=M+200, col0=M+250, colW=(maxW-(col0-M))/nev;
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setFillColor(31,56,100); doc.setTextColor(255,255,255); doc.rect(M,y-11,maxW,20,'F');
+    doc.text('Critério',cCrit,y+3); doc.text('Peso',cPeso,y+3);
+    for(var a=0;a<nev;a++){ doc.text(doc.splitTextToSize(String(evs[a].avaliador),colW-8)[0], col0+a*colW, y+3); }
+    y+=20; doc.setTextColor(30,35,48); doc.setFont('helvetica','normal');
+    crit.forEach(function(cr){
+      doc.text(cr[0],cCrit,y+3); doc.text(String(cr[2]),cPeso+4,y+3);
+      for(var a=0;a<nev;a++){ doc.text(String(evs[a][cr[1]]), col0+a*colW+6, y+3); }
+      doc.setDrawColor(225,229,238); doc.line(M,y+8,W-M,y+8); y+=18;
+    });
+    doc.setFont('helvetica','bold'); doc.text('Pontuação',cCrit,y+3);
+    for(var a2=0;a2<nev;a2++){ var p=(+evs[a2].pts); doc.text(p+'/50 ('+Math.round(p/50*100)+'%)', col0+a2*colW+6, y+3); }
+    y+=24;
 
     var ok=r.ok;
     doc.setFillColor(ok?231:251, ok?244:236, ok?236:236); doc.roundedRect(M,y-12,maxW,30,4,4,'F');
     doc.setTextColor(ok?31:178, ok?122:58, ok?77:58); doc.setFont('helvetica','bold'); doc.setFontSize(12);
-    doc.text('Média: '+fmtPDF(r.media)+'/50 ('+r.pct+'%)  -  '+(ok?'APROVADA':'REPROVADA'),M+12,y+7); y+=40;
+    doc.text('Média: '+fmt(r.media)+'/50 ('+r.pct+'%)  -  '+(ok?'APROVADA':'REPROVADA')+(r.n<2?'  (parcial)':''),M+12,y+7); y+=40;
     doc.setTextColor(30,35,48); doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.text('Nível de impacto: ',M,y); doc.setFont('helvetica','normal'); doc.text(r.nivel,M+110,y); y+=18;
     doc.setFont('helvetica','bold'); doc.text('Prêmio de referência: ',M,y); doc.setFont('helvetica','normal'); doc.text(r.valor,M+130,y); y+=26;
 
     secTitle('RESPONSÁVEIS PELA AVALIAÇÃO');
-    doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.text('Data: '+data,M,y); y+=40;
-    var colW=(maxW-30)/2; var x2=M+colW+30;
-    doc.setDrawColor(120,120,120); doc.line(M,y,M+colW,y); doc.line(x2,y,x2+colW,y); y+=14;
-    doc.setFontSize(10);
-    doc.text(doc.splitTextToSize('Avaliador 1: '+av1, colW),M,y);
-    doc.text(doc.splitTextToSize('Avaliador 2: '+av2, colW),x2,y);
+    doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.text('Data: '+data,M,y); y+=38;
+    for(var s=0;s<nev;s++){
+      doc.setDrawColor(120,120,120); doc.line(M,y,M+240,y);
+      doc.setFontSize(10); doc.text('Avaliador: '+evs[s].avaliador, M, y+13);
+      y+=46;
+    }
 
-    var yy=doc.internal.pageSize.getHeight()-50; doc.setDrawColor(225,229,238); doc.line(M,yy,W-M,yy);
+    var yy=doc.internal.pageSize.getHeight()-46; doc.setDrawColor(225,229,238); doc.line(M,yy,W-M,yy);
     doc.setFontSize(8.5); doc.setTextColor(110,118,130);
-    var disc=doc.splitTextToSize('Prêmio = liberalidade do empregador por desempenho superior (art. 457, §§ 2º e 4º, CLT). Resultado pela média das duas avaliações; o enquadramento do nível e o valor competem ao Comitê (Art. 8º, § 1º).',maxW);
+    var disc=doc.splitTextToSize('Prêmio = liberalidade do empregador por desempenho superior (art. 457, §§ 2º e 4º, CLT). Resultado pela média das avaliações; o enquadramento do nível e o valor competem ao Comitê (Art. 8º, § 1º).',maxW);
     doc.text(disc,M,yy+13);
-    var nome=(v('f-titulo').trim()||autor).replace(/[^a-zA-Z0-9]+/g,'_').slice(0,40)||'avaliacao';
+    var nome=(titulo||autor).replace(/[^a-zA-Z0-9]+/g,'_').slice(0,40)||'avaliacao';
     doc.save('Ficha_Avaliacao_'+nome+'.pdf');
   }
-  function fmtPDF(n){ return (Math.round(n*10)/10).toString().replace('.',','); }
 </script>
 </body>
 </html>
