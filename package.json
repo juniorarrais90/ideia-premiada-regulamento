@@ -1,0 +1,16 @@
+{
+  "name": "ideia-premiada-regulamento",
+  "version": "1.0.0",
+  "description": "Gerador do Regulamento Interno do Programa Ideia Premiada - Arrais Advogados",
+  "main": "gerar_regulamento.js",
+  "scripts": {
+    "start": "node gerar_regulamento.js"
+  },
+  "keywords": ["regulamento", "docx", "arrais-advogados", "ideia-premiada"],
+  "author": "Junior Arrais",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "docx": "^8.5.0"
+  }
+}
