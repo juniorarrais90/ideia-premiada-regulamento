@@ -347,7 +347,7 @@
     if(!nome){ msg.className='savemsg err'; msg.style.display='block'; msg.textContent='Informe o seu nome.'; return; }
     if(API.indexOf('APPS_SCRIPT')!==-1){ msg.className='savemsg err'; msg.style.display='block'; msg.textContent='Servidor ainda não configurado.'; return; }
     var btn=document.getElementById('btnSalvar'); btn.disabled=true; btn.textContent='Salvando...';
-    var payload={ key:getKey(), titulo:v('f-titulo'), autor:v('f-autor'), avaliador:nome, a:+v('a'), i:+v('i'), c:+v('c'), o:+v('o') };
+    var dparam=((location.hash||'').match(/d=([^&]+)/)||[])[1]||''; var payload={ key:getKey(), d:dparam, titulo:v('f-titulo'), autor:v('f-autor'), avaliador:nome, a:+v('a'), i:+v('i'), c:+v('c'), o:+v('o') };
     try{
       var r=await fetch(API,{method:'POST',body:JSON.stringify(payload)});
       var j=await r.json();
